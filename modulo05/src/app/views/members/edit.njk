@@ -1,0 +1,60 @@
+<!-- ARQUIVO RELATIVO A EDIÇÃO, CORRIGIR OS DADOS -->
+
+
+<!-- O method "POST" e melhor para criação de dados -->
+
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<!--Formulario html só vai aceitar "POST" e "GET" -->
+
+<div class="card">
+    <section 
+        class="avatar" 
+        style=" background: url({{member.avatar_url}}) no-repeat center center / cover">
+    </section>
+
+    <section class="details">
+
+        <form  method="POST" action="/members?_method=PUT"> <!-- O segundo atributo que vamos colocar e o "action",que e para onde ele vai enviar, no caso "/members", si eu não coloco "action" ele fica na mesma pasta -->
+
+
+            <h3>Editar Membro</h3>
+
+            {% include 'members/fields.njk' %} <!-- Aqui ele vai incluir para mim algum outro pedaço de codigo externo que está em outro lugar  para esse  arquivo aqui.No caso ele está indo no arquivo fields.njk e puxando para mim o conteudo*/ -->
+
+            <input 
+                type="hidden" 
+                name="id" 
+                value={{member.id}}>
+
+        </form>
+
+        <form id="form-delete" action="/members?_method=DELETE" method="post">
+            <input type="hidden" name="id" value={{member.id}}>
+            <button type="submit">Deletar</button>
+        </form>
+
+        <!-- Confirmação de exclusão do membro -->
+        <script>
+
+            const formDelete = document.querySelector("#form-delete")
+            formDelete.addEventListener("submit", function(event){
+                const confirmation = confirm("Deseja Deletar?")
+                if(!confirmation) {
+                    event.preventDefault()
+                }
+            })
+
+        </script>
+
+    </section>
+       
+</div>
+
+
+
+
+
+{% endblock content %}

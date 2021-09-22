@@ -1,0 +1,56 @@
+<!-- Toda vez que entramos no http://localhost:3000/instructors entramos no index -->
+
+{% extends "layout.njk" %}
+
+{% block content %}
+<div class="card table-container">
+
+    <div class="header">
+        <a class="button" href="/instructors/create">Novo</a>
+        <form action="/instructors" method="GET">
+            <input 
+                type="text"
+                name="filter"
+                placeholder="Nome ou Atendimento"
+                value={{filter}}
+            >
+            <button type="submit">Filtrar</button>
+        </form>
+
+    </div>
+
+
+    
+    <table width="100%">      <!-- Criando o formato de uma tabela -->
+        <thead>  <!-- Cabeçalho -->
+            <tr> <!-- Linha -->
+                <th>Instructor</th>  <!-- Coluna --> 
+                <th>Atendimento</th> <!-- Coluna -->
+                <th>Alunos </th>
+                <th>Ação</th> <!-- Coluna -->
+            </tr>
+        </thead>
+        <tbody>  <!-- Corpo -->
+            {% for instructor in instructors %}
+            <tr> <!-- Linha -->
+                <td>
+                    <span style="background-image: url({{instructor.avatar_url}})"></span>
+                    {{instructor.name}}
+                </td> <!-- Coluna -->
+                <td>{{instructor.services}}</td> <!-- Coluna -->
+                <td>{{instructor.total_students}}</td> <!-- Coluna -->
+                <td><a href="/instructors/{{instructor.id}}">ver</a></td>
+            </tr> 
+            {% endfor %} 
+        </tbody>
+    </table>
+
+    <div class="pagination"
+        data-page={{pagination.page}}
+        data-total={{pagination.total}}
+        data-filter={{filter}}
+    ></div>
+
+</div>
+
+{% endblock content %}

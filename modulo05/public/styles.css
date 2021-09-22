@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+:root {
+    --primary-color:#7159c1;
+    --secondary-color: #F7DF1E;
+}
+
+/* Resetando as configurações do navegador */
+*{
+   margin: 0;
+   padding: 0; 
+   border: none;
+}
+
+body {
+    background-color:var(--primary-color) ;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: white;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    box-sizing: border-box; /* Significa que vai levar todo conteudo até o limite da largura do conteudo */
+}
+
+.links {
+    font-size: 22px;
+}
+
+.links a  + a { /* "a" + "a" significa pegar somente o segundo "a", ou seja, Members*/
+    margin-left: 32px; /* Espaçamento entre as palavras "Instructors" e "Members" */
+
+}
+
+.links a {
+    text-decoration: none; /* Retirando o sublinhado */
+    color: #777; /* Essa cor vai ser usada quando não estiver marcado ou com mouse em cima */
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bold;
+    color: var(--primary-color) ;
+}
+
+.links a:hover { /* O hover quando eu passar o mouse em cima vai permitir que seja realizado alguma função*/
+    color: var(--primary-color);
+}
+
+.links a::after {
+    content: "";
+    width: 0%; /* Aqui e quando eu não estou com o mouse em cima, ele não vai ficar com o underline */
+    height: 2px;
+    background-color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.links a:hover::after { /* No pseuelement after precisa ter um content , o hover aqui vai ser responsavel quando eu passar o mouse o underline se mover*/
+    width: 100%; /* Quando eu passar o mouse em cima ele vai se mover até o 100% */
+    transition: width 200ms ease-in-out; /* Quando utilizo o transition width ele vai presta atenção no widht */
+}
+
+/* === CARD === */
+
+.card {
+    background-color: white;
+    width: 800px;
+    min-height: 400px;
+
+    /*Espaçamento e alinhamento ao centro*/
+    margin: 45px auto; /* Alinhando ao meio o card */
+
+    /* Grid dividido ao meio */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Aqui e a maneira que a foto vai ser representada, ou seja, metade e metade */
+
+    /*Sombra*/
+    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+
+    /* animation */
+    animation-name: up;
+    animation-duration: 200ms;
+    animation-timing-function: ease-out; /* Para deixar a animação suave */
+}
+
+@keyframes up { /*Para eu criar a animação escrevo @Keyframes e escrevo o nome da animação que desejo, e colocom "from" da onde ela vai começar e "to" aonde ela vai terminar */
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+       opacity: 1; 
+    }
+}
+
+/* details */
+
+.details {
+    padding: 32px;
+}
+
+.details .item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+}
+
+.details .item:last-child { /* Retirar a linha do ultimo elemento */
+    border: none;
+}
+
+.details h3,
+.details .item div:nth-child(1) { /* Para pegar a primeira div */
+    font-size: 14px;
+    line-height: 24px;
+    color: #777;
+    letter-spacing: 0.7px;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2) {  
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.details h3 { /* Configurando o h3 */
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.details .item  span { /* Configurando o Acompanhamento */
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    border-radius: 16px;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+/* FORM */
+
+input, select { /* Aqui vai aplicar a todos os tipos de inputs */
+    width: 100%;
+    outline: none; /* retira a linha que fica ao redor do campo */
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+input[type="radio"] { /* Aqui eu estou selecionando somente o input do tipo "radio" */
+    width:initial;
+    margin-right: 4px; /* Separando a bolinha de selecionado do nome "Masculino" e "Feminino" */
+}
+
+input::placeholder {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"], 
+a.button {/* Aqui somente vai estilizar os botões do tipo submit */
+    padding: 8px 32px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    margin-top: 32px;
+    width: 100%;
+    font-size: 16px;
+}
+
+a.button {
+    display: block; /* Vai possibilitar o botão do show ficar na linha toda */
+    box-sizing: border-box; /* Como ele passo, vamos usar o box-sizing para ele respeitar o limite da box*/
+    text-align: center;
+    text-decoration: none;
+}
+
+#form-delete button[type="submit"] {
+    margin-top: 8px;
+    background-color: lightcoral;
+}
+
+/* INDEX INSTRUCTORS */
+.table-container {
+    display: block;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.table-container table {
+    border-spacing: 0;
+}
+
+.table-container thead tr th {
+    text-align: left;
+}
+
+td, th {
+    padding: 16px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+th {
+    text-transform: uppercase;
+    color: #777;
+    font-size: 14px;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr td:first-child {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    align-items: center;
+}
+
+tbody tr td:first-child span {
+    width: 48px;
+    height: 48px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
+    box-shadow: 3px 1px 6px -4px black;
+    border: 2px solid white;
+}
+
+tbody tr td:last-child a, .table-container > a {
+    background-color: var(--primary-color);
+    padding: 8px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.table-container > a {
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.table-container thead tr th:last-child,td:last-child {
+    text-align: center;
+}
+
+/* FILTERS */
+
+.table-container .header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.table-container .header a{
+    margin: 0;
+    width: 120px;
+
+}
+
+.table-container .header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-gap:8px;
+}
+
+.table-container .header form input {
+    border: 1px solid rgba(211, 205, 205, 0.63);
+    padding: 4px 8px;
+    box-sizing: border-box;
+}
+
+.table-container .header form button {
+    margin: 0;
+}
+
+/*pagination*/
+.table-container {
+    display: grid;
+    grid-template: 64px 1fr 16px / 1fr;
+}
+
+.table-container .header {
+    margin: 0;
+    align-self: start;
+}
+
+.table-container .pagination {
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+    color: var(--primary-color);
+    text-decoration: none;
+    margin-right: 16px;
+}
+
+.pagination a:hover {
+    filter:brightness(0.3);
+    border-bottom: 1px solid var(--primary-color);
+}

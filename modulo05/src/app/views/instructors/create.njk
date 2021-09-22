@@ -1,0 +1,21 @@
+<!-- Pagina de criação do Instructor -->
+<!-- O method "POST" e melhor para criação de dados -->
+
+{% extends "layout.njk" %} <!-- Aqui eu estou reutilizando o codigo do layout -->
+
+{% block content %}
+
+<form class="card" method="POST" action="/instructors"> <!-- O segundo atributo que vamos colocar e o "action",que e para onde ele vai enviar, no caso "/instructors", si eu não coloco "action" ele fica na mesma pasta -->
+    <section 
+    class="avatar" 
+    style=" background: url(https://source.unsplash.com/collection/8325170/500x500) no-repeat center center / cover"></section>
+    <section class="details">
+
+        <h3>Novo Instrutor</h3>
+
+        {% include 'instructors/fields.njk' %} <!-- Aqui ele vai incluir para mim algum outro pedaço de codigo externo que está em outro lugar  para esse  arquivo aqui.No caso ele está indo no arquivo fields.njk e puxando para mim o conteudo*/ -->
+
+    </section>
+</form>
+
+{% endblock content %}
